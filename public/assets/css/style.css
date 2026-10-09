@@ -1,0 +1,121 @@
+/* Valūtu konvertētāja stili. Krāsas un izmēri ir definēti kā mainīgie :root blokā. */
+:root {
+    --ink: #14232b;
+    --ink-soft: #52646d;
+    --paper: #eef2f3;
+    --panel: #ffffff;
+    --line: #cfd9dd;
+    --accent: #0a6c74;
+    --accent-dark: #07494f;
+    --warn-bg: #fff3d6;
+    --warn-ink: #6b4500;
+    --error-bg: #fde8e6;
+    --error-ink: #8f1d14;
+    --ok-bg: #e0f3ea;
+    --ok-ink: #0d5a37;
+    --info-bg: #e3eef6;
+    --info-ink: #163f5c;
+    --radius: 6px;
+    --font: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; font-family: var(--font); color: var(--ink); background: var(--paper); line-height: 1.5; }
+
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 1rem; }
+
+h1 { font-size: 1.75rem; margin: 1.5rem 0 1rem; }
+h2 { font-size: 1.2rem; margin: 0 0 .75rem; }
+
+a { color: var(--accent-dark); }
+code { background: rgba(0,0,0,.06); padding: .1em .35em; border-radius: 3px; font-size: .9em; }
+
+:focus-visible { outline: 3px solid #f2a900; outline-offset: 2px; }
+
+/* Augšējā josla */
+.topbar { background: var(--ink); color: #fff; }
+.topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; min-height: 3.5rem; }
+.brand { color: #fff; font-weight: 700; text-decoration: none; font-size: 1.1rem; }
+.topbar nav { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.topbar a { color: #fff; }
+.who { color: #b8c8cf; }
+
+/* Paneļi un formas */
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1.5rem; }
+.narrow { max-width: 420px; margin: 2rem auto; }
+
+.field { margin-bottom: 1rem; }
+label { display: block; font-weight: 600; margin-bottom: .25rem; }
+input, select {
+    width: 100%; padding: .55rem .65rem; font: inherit; color: var(--ink);
+    border: 1px solid #94a5ac; border-radius: var(--radius); background: #fff;
+}
+.hint { margin: .25rem 0 0; color: var(--ink-soft); font-size: .875rem; }
+.field-error { margin: .25rem 0 0; color: var(--error-ink); font-size: .9rem; font-weight: 600; }
+
+button { font: inherit; cursor: pointer; }
+.primary { background: var(--accent); color: #fff; border: 0; border-radius: var(--radius); padding: .65rem 1.4rem; font-weight: 600; }
+.primary:hover { background: var(--accent-dark); }
+.link-button { background: none; border: 0; padding: 0; color: inherit; text-decoration: underline; }
+.topbar .link-button { color: #fff; }
+.history .link-button { color: var(--accent-dark); }
+form.inline { display: inline; margin: 0; }
+.swap {
+    width: 2.6rem; height: 2.6rem; border: 1px solid #94a5ac; border-radius: 50%;
+    background: #fff; color: var(--accent-dark); font-size: 1.2rem; align-self: center;
+}
+.swap:hover { background: var(--info-bg); }
+
+/* Konvertētāja un vēstures formu izkārtojums */
+.converter, .rates-form { display: grid; gap: 1rem; align-items: start; }
+.converter { grid-template-columns: 1fr 1.4fr auto 1.4fr auto; }
+.rates-form { grid-template-columns: 1fr auto 1fr; }
+.rates-form .field, .converter .field { margin-bottom: 0; }
+.converter .swap, .rates-form .swap { margin-top: 1.6rem; }
+.converter .primary { margin-top: 1.6rem; }
+.rates-form .primary { grid-column: 1 / -1; justify-self: start; }
+
+/* Paziņojumi */
+.notice { padding: .7rem 1rem; border-radius: var(--radius); margin: 1rem 0; }
+.notice.warn { background: var(--warn-bg); color: var(--warn-ink); }
+.notice.error { background: var(--error-bg); color: var(--error-ink); }
+.notice.success { background: var(--ok-bg); color: var(--ok-ink); }
+.notice.info { background: var(--info-bg); color: var(--info-ink); }
+.muted { color: var(--ink-soft); }
+
+/* Rezultāts – lapas galvenais akcents */
+.result { margin: 0 0 2rem; padding: 1.25rem 0 0; }
+.result-line { margin: 0; font-size: 1.15rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.result-figure {
+    margin: .1rem 0 .5rem; font-size: clamp(2.2rem, 7vw, 3.6rem); font-weight: 700;
+    line-height: 1.1; color: var(--accent-dark); font-variant-numeric: tabular-nums;
+}
+.result-figure span { font-size: .5em; font-weight: 600; color: var(--ink-soft); }
+.result-meta { margin: 0; color: var(--ink-soft); }
+
+/* Tabulas */
+.history-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.table-scroll { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 1.5rem; }
+.table-scroll.tall { max-height: 26rem; overflow-y: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: .5rem .75rem; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { background: #f6f9fa; position: sticky; top: 0; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+tbody tr:last-child td { border-bottom: 0; }
+
+/* Diagramma un statistika */
+.chart-box { position: relative; height: 320px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1.25rem 0 0; }
+.stats div { border-left: 3px solid var(--accent); padding-left: .75rem; }
+.stats dt { color: var(--ink-soft); font-size: .875rem; }
+.stats dd { margin: 0; font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+.footer { color: var(--ink-soft); font-size: .85rem; padding: 2rem 1rem; }
+
+/* Šaurie ekrāni */
+@media (max-width: 760px) {
+    .converter, .rates-form { grid-template-columns: 1fr; }
+    .converter .swap, .rates-form .swap, .converter .primary { margin-top: 0; justify-self: start; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
